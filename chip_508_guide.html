@@ -100,7 +100,7 @@
   .step-pane.active { display: block; }
 
   /* Light states visual */
-  .light-states { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; justify-content: center; }
+  .light-states { display: flex; gap: 20px; align-items: center; flex-wrap: nowrap; justify-content: center; }
   .light-state { text-align: center; }
   .light-ring {
     width: 56px; height: 56px; border-radius: 50%;
@@ -219,6 +219,14 @@
     user-select: none;
   }
 
+  @media (max-width: 440px) {
+    .light-states { gap: 8px; }
+    .light-ring { width: 40px; height: 40px; }
+    .light-inner { width: 14px; height: 14px; }
+    .light-lbl { font-size: 10px; }
+    .light-sub { font-size: 9px; }
+    .arrow-sep { font-size: 14px; }
+  }
   @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.12} }
 
   @media (prefers-color-scheme: dark) {
