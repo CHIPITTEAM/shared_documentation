@@ -40,8 +40,8 @@
             gap: 12px;
         }
 
-        .header-title { display: flex; align-items: center; gap: 12px; }
-        .header-title .logo { font-size: 32px; }
+        .header-title { display: flex; align-items: center; gap: 14px; }
+        .header-title .logo { height: 48px; width: auto; display: block; }
         .header-title h1 {
             font-size: 22px;
             font-weight: 700;
@@ -237,6 +237,58 @@
 
         .footer a { color: var(--brand); text-decoration: none; }
 
+        /* --- Quick start --- */
+        .quickstart {
+            background: var(--brand);
+            border-radius: 16px;
+            padding: 20px 24px;
+            margin-bottom: 20px;
+            color: white;
+        }
+        .quickstart-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .07em;
+            opacity: .7;
+            margin-bottom: 14px;
+        }
+        .quickstart-steps {
+            display: flex;
+            gap: 0;
+            align-items: stretch;
+        }
+        .qs-step {
+            flex: 1;
+            text-align: center;
+            padding: 0 10px;
+            position: relative;
+        }
+        .qs-step + .qs-step::before {
+            content: "→";
+            position: absolute;
+            left: -6px;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: .5;
+            font-size: 16px;
+        }
+        .qs-icon { font-size: 24px; margin-bottom: 6px; }
+        .qs-title { font-size: 13px; font-weight: 700; margin-bottom: 2px; }
+        .qs-desc { font-size: 11px; opacity: .75; line-height: 1.4; }
+        .quickstart-note {
+            margin-top: 14px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255,255,255,.2);
+            font-size: 12px;
+            opacity: .75;
+            text-align: center;
+        }
+        @media (max-width: 480px) {
+            .quickstart-steps { flex-direction: column; gap: 12px; }
+            .qs-step + .qs-step::before { content: "↓"; left: 50%; top: -10px; transform: translateX(-50%); }
+        }
+
         /* --- Room selector --- */
         .room-selector { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 24px; }
         .room-tile {
@@ -313,7 +365,7 @@
     <!-- Header -->
     <div class="header">
         <div class="header-title">
-            <div class="logo">&#128249;</div>
+            <img class="logo" src="img/chip.jpg" alt="CHIP logo">
             <div>
                 <h1>CHIP Teams Guide</h1>
                 <p>
@@ -325,6 +377,53 @@
         <div class="lang-toggle">
             <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
             <button id="btn-da" onclick="setLang('da')">DA</button>
+        </div>
+    </div>
+
+    <!-- Quick start -->
+    <div class="quickstart">
+        <div class="quickstart-label">
+            <span data-lang="en">Quick start</span>
+            <span data-lang="da">Hurtig start</span>
+        </div>
+        <div class="quickstart-steps">
+            <div class="qs-step">
+                <div class="qs-icon">&#128197;</div>
+                <div class="qs-title">
+                    <span data-lang="en">Book</span>
+                    <span data-lang="da">Book</span>
+                </div>
+                <div class="qs-desc">
+                    <span data-lang="en">Add the room as an attendee in your calendar invite</span>
+                    <span data-lang="da">Tilfoj lokalet som deltager i din kalenderinvitation</span>
+                </div>
+            </div>
+            <div class="qs-step">
+                <div class="qs-icon">&#128682;</div>
+                <div class="qs-title">
+                    <span data-lang="en">Walk in</span>
+                    <span data-lang="da">Ga ind</span>
+                </div>
+                <div class="qs-desc">
+                    <span data-lang="en">Your meeting appears on the touch panel</span>
+                    <span data-lang="da">Dit mode vises pa betjeningspanelet</span>
+                </div>
+            </div>
+            <div class="qs-step">
+                <div class="qs-icon">&#9654;&#65039;</div>
+                <div class="qs-title">
+                    <span data-lang="en">Tap Join</span>
+                    <span data-lang="da">Tryk Join</span>
+                </div>
+                <div class="qs-desc">
+                    <span data-lang="en">Camera, mic and screen are ready. No setup needed.</span>
+                    <span data-lang="da">Kamera, mikrofon og skaerm er klar. Ingen opsaetning.</span>
+                </div>
+            </div>
+        </div>
+        <div class="quickstart-note">
+            <span data-lang="en">Need more? Use the sections below for sharing, external guests and corner cases.</span>
+            <span data-lang="da">Brug for mere? Se afsnittene nedenfor for deling, eksterne gaester og specielle situationer.</span>
         </div>
     </div>
 
@@ -498,39 +597,37 @@
             <div>
                 <h2 data-lang="en">3. Share Your Screen</h2>
                 <h2 data-lang="da">3. Del din skaerm</h2>
-                <p data-lang="en">Wireless via the Teams desktop app</p>
-                <p data-lang="da">Tradlost via Teams-skrivebordsappen</p>
+                <p data-lang="en">Join the meeting from your laptop, then share from there</p>
+                <p data-lang="da">Deltag i modet fra din laptop, og del derfra</p>
             </div>
         </div>
         <div class="steps">
             <div class="step">
                 <div class="step-number">1</div>
                 <div class="step-body">
-                    <strong data-lang="en">Click the Share icon in Teams</strong>
-                    <strong data-lang="da">Klik pa Share-ikonet i Teams</strong>
-                    <p data-lang="en">In the Teams desktop app, click the <em>Share</em> icon and choose <em>Cast to a room</em>.</p>
-                    <p data-lang="da">I Teams-skrivebordsappen skal du klikke pa <em>Share</em>-ikonet og vaelge <em>Cast to a room</em>.</p>
+                    <strong data-lang="en">Bring your laptop and join the meeting - without audio</strong>
+                    <strong data-lang="da">Tag din laptop med og deltag i modet - uden lyd</strong>
+                    <p data-lang="en">Open the meeting in Teams on your laptop and click <em>Join</em>. Before entering, Teams will ask about audio - select <em>Don't use audio</em> to avoid echo. The room handles all sound.</p>
+                    <p data-lang="da">Abn modet i Teams pa din laptop og klik pa <em>Join</em>. For du deltager, sporger Teams om lyd - vaelg <em>Don't use audio</em> for at undga ekko. Rummet klarer al lyd.</p>
+                    <div style="margin-top: 10px;">
+                        <img src="img/join_muted.png" alt="Teams join screen - select Don't use audio" class="zoomable" style="width: 100%; border-radius: 10px; border: 1px solid #e5e7eb; cursor: zoom-in;">
+                    </div>
                 </div>
             </div>
             <div class="step">
                 <div class="step-number">2</div>
                 <div class="step-body">
-                    <strong data-lang="en">Select the room</strong>
-                    <strong data-lang="da">Vaelg lokalet</strong>
-                    <p data-lang="en">Pick your room from the list. Your screen will appear on the room display within seconds.</p>
-                    <p data-lang="da">Vaelg dit lokale fra listen. Din skaerm vises pa lokalets skaerm inden for sekunder.</p>
+                    <strong data-lang="en">Share your screen from your laptop</strong>
+                    <strong data-lang="da">Del din skaerm fra din laptop</strong>
+                    <p data-lang="en">Click the <em>Share</em> icon in Teams and choose what to present. It appears on the room display and for all remote participants.</p>
+                    <p data-lang="da">Klik pa <em>Share</em>-ikonet i Teams og vaelg, hvad du vil vise. Det vises pa lokalets skaerm og for alle fjerndeltagere.</p>
                 </div>
             </div>
         </div>
-        <div style="margin-top: 20px;">
-            <p data-lang="en" style="font-size: 13px; color: #6b7280; margin-bottom: 8px;">&#128247; The touch panel while in a call - Share button in the toolbar:</p>
-            <p data-lang="da" style="font-size: 13px; color: #6b7280; margin-bottom: 8px;">&#128247; Betjeningspanelet under et opkald - Share-knappen i vaerktoejslinjen:</p>
-            <img src="img/touch_incall.jpg" alt="Touch panel during a call showing the Share button" class="zoomable" style="width: 100%; border-radius: 10px; border: 1px solid #e5e7eb; cursor: zoom-in;">
-        </div>
         <div class="callout tip">
             <div class="callout-icon">&#128161;</div>
-            <div data-lang="en">Remote participants see whatever you share on the room display.</div>
-            <div data-lang="da">Fjerndeltagere ser det, du deler pa lokalets skaerm.</div>
+            <div data-lang="en">You do not need to use your laptop's camera or microphone - the room handles both. Your laptop is only needed if you want to share content.</div>
+            <div data-lang="da">Du behover ikke bruge din laptops kamera eller mikrofon - rummet klarer begge dele. Din laptop er kun nodvendig, hvis du vil dele indhold.</div>
         </div>
     </div>
 
@@ -570,8 +667,11 @@
                 <div class="step-body">
                     <strong data-lang="en">They wait in the lobby</strong>
                     <strong data-lang="da">De venter i lobbyen</strong>
-                    <p data-lang="en">External guests land in a virtual waiting room. You will see a notification to admit them.</p>
-                    <p data-lang="da">Eksterne gaester havner i et virtuelt ventelokale. Du vil modtage en besked om at lukke dem ind.</p>
+                    <p data-lang="en">External guests land in a virtual waiting room. You will see a notification on the touch panel to admit them.</p>
+                    <p data-lang="da">Eksterne gaester havner i et virtuelt ventelokale. Du vil se en besked pa betjeningspanelet om at lukke dem ind.</p>
+                    <div style="margin-top: 10px;">
+                        <img src="img/external_user_lobby.jpg" alt="Touch panel showing guests waiting in lobby" class="zoomable" style="width: 100%; border-radius: 10px; border: 1px solid #e5e7eb; cursor: zoom-in;">
+                    </div>
                 </div>
             </div>
             <div class="step">

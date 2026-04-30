@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teams Rum - Hurtig guide / Quick guide</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #e8e8e8;
+            padding: 30px 16px;
+        }
+
+        .page {
+            background: white;
+            width: 210mm;
+            min-height: 297mm;
+            margin: 0 auto 30px;
+            padding: 14mm 16mm 12mm;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- Header --- */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 8mm;
+            border-bottom: 3px solid #4B53BC;
+            margin-bottom: 8mm;
+        }
+
+        .header h1 {
+            font-size: 28pt;
+            font-weight: 800;
+            color: #4B53BC;
+            line-height: 1.1;
+        }
+
+        .header .subtitle {
+            font-size: 11pt;
+            color: #888;
+            margin-top: 1.5mm;
+        }
+
+        .header-right img {
+            height: 18mm;
+            width: auto;
+            display: block;
+        }
+
+        /* --- Section label --- */
+        .section-label {
+            font-size: 8pt;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            color: #bbb;
+            margin-bottom: 5mm;
+        }
+
+        /* --- Steps --- */
+        .steps { flex: 1; }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 6mm;
+            margin-bottom: 6.5mm;
+        }
+
+        .step-num {
+            width: 13mm;
+            height: 13mm;
+            background: #4B53BC;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16pt;
+            font-weight: 800;
+            flex-shrink: 0;
+            margin-top: .5mm;
+        }
+
+        .step-num.letter { font-size: 13pt; }
+
+        .step-content .title {
+            font-size: 15pt;
+            font-weight: 700;
+            color: #1a1a2e;
+            line-height: 1.2;
+            margin-bottom: 1.5mm;
+        }
+
+        .step-content .detail {
+            font-size: 10pt;
+            color: #555;
+            line-height: 1.55;
+        }
+
+        /* --- Divider --- */
+        hr {
+            border: none;
+            border-top: 1.5px dashed #ddd;
+            margin: 6mm 0;
+        }
+
+        /* --- Warning box --- */
+        .warn-box {
+            background: #fffbeb;
+            border-left: 4px solid #f59e0b;
+            border-radius: 6px;
+            padding: 4mm 5mm;
+            margin-bottom: 6.5mm;
+        }
+
+        .warn-box .title {
+            font-size: 11pt;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin-bottom: 1.5mm;
+        }
+
+        .warn-box .detail {
+            font-size: 10pt;
+            color: #555;
+            line-height: 1.55;
+        }
+
+        /* --- Footer --- */
+        .footer {
+            border-top: 1.5px solid #eee;
+            padding-top: 5mm;
+            margin-top: 4mm;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 8mm;
+        }
+
+        .footer-left { flex: 1; }
+
+        .rooms-label {
+            font-size: 8pt;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .07em;
+            color: #bbb;
+            margin-bottom: 2mm;
+        }
+
+        .room-names {
+            font-size: 10pt;
+            font-weight: 600;
+            color: #4B53BC;
+            line-height: 1.7;
+        }
+
+        .contact {
+            margin-top: 3mm;
+            font-size: 9pt;
+            color: #888;
+            line-height: 1.6;
+        }
+
+        .footer-right { text-align: center; flex-shrink: 0; }
+
+        .footer-right img {
+            width: 26mm;
+            height: 26mm;
+            display: block;
+        }
+
+        .qr-label {
+            font-size: 8pt;
+            color: #888;
+            margin-top: 1.5mm;
+            line-height: 1.4;
+        }
+
+        /* --- Print --- */
+        @media print {
+            body { background: none; padding: 0; }
+            .page {
+                box-shadow: none;
+                width: 100%;
+                min-height: 100vh;
+                margin: 0;
+                page-break-after: always;
+            }
+            @page { size: A4 portrait; margin: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- PAGE 1: DANISH -->
+<div class="page">
+
+    <div class="header">
+        <div>
+            <h1>Teams Rum &#128249;</h1>
+            <div class="subtitle">Hurtig guide &nbsp;&middot;&nbsp; CHIP-IT</div>
+        </div>
+        <div class="header-right"><img src="img/chip.jpg" alt="CHIP logo"></div>
+    </div>
+
+    <div class="steps">
+
+        <div class="section-label">Sadan starter du et mode</div>
+
+        <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+                <div class="title">Book lokalet i din kalender</div>
+                <div class="detail">Tilfoj lokalets navn som deltager i din Teams- eller Outlook-invitation. Lokalet accepterer automatisk, hvis det er ledigt.</div>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+                <div class="title">Ga ind i lokalet</div>
+                <div class="detail">Dit mode vises automatisk pa betjeningspanelet pa bordet.</div>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+                <div class="title">Tryk <strong>"Join"</strong> pa betjeningspanelet</div>
+                <div class="detail">Kamera, mikrofon og skaerm er klar med det samme. Ingen opsaetning nodvendig.</div>
+            </div>
+        </div>
+
+        <hr>
+        <div class="section-label">Vil du dele din skaerm?</div>
+
+        <div class="step">
+            <div class="step-num letter">A</div>
+            <div class="step-content">
+                <div class="title">Tag din laptop med og deltag i modet</div>
+                <div class="detail">Abn modet i Teams pa din laptop og klik <strong>"Join"</strong>.</div>
+            </div>
+        </div>
+
+        <div class="warn-box">
+            <div class="title">&#9888;&#65039;&nbsp; Sluk lyden pa din laptop, inden du deltager</div>
+            <div class="detail">Vaelg <strong>"Don't use audio"</strong> nar Teams sporger om lydindstilling - ellers far du ekko. Rummet klarer al lyd.</div>
+        </div>
+
+        <div class="step">
+            <div class="step-num letter">B</div>
+            <div class="step-content">
+                <div class="title">Del din skaerm fra Teams</div>
+                <div class="detail">Klik pa <strong>Share</strong>-ikonet i Teams pa din laptop og vaelg, hvad du vil vise.</div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <div class="footer-left">
+            <div class="rooms-label">Denne guide gaelder for</div>
+            <div class="room-names">
+                Chip Lunch (5.08)<br>
+                Oster Alle (6.15)<br>
+                Jens' kontor (drop-in)
+            </div>
+            <div class="contact">
+                Sporgsmal? chipit.rigshospitalet@regionh.dk
+            </div>
+        </div>
+        <div class="footer-right">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://chipitteam.github.io/shared_documentation/teams_guide.html" alt="QR kode til fuld guide">
+            <div class="qr-label">Scan for fuld guide</div>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- PAGE 2: ENGLISH -->
+<div class="page">
+
+    <div class="header">
+        <div>
+            <h1>Teams Room &#128249;</h1>
+            <div class="subtitle">Quick guide &nbsp;&middot;&nbsp; CHIP-IT</div>
+        </div>
+        <div class="header-right"><img src="img/chip.jpg" alt="CHIP logo"></div>
+    </div>
+
+    <div class="steps">
+
+        <div class="section-label">How to start a meeting</div>
+
+        <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+                <div class="title">Book the room in your calendar</div>
+                <div class="detail">Add the room name as an attendee in your Teams or Outlook invite. The room accepts automatically if it is free.</div>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+                <div class="title">Walk into the room</div>
+                <div class="detail">Your meeting appears automatically on the touch panel on the table.</div>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+                <div class="title">Tap <strong>"Join"</strong> on the touch panel</div>
+                <div class="detail">Camera, microphone and screen are ready instantly. No setup needed.</div>
+            </div>
+        </div>
+
+        <hr>
+        <div class="section-label">Want to share your screen?</div>
+
+        <div class="step">
+            <div class="step-num letter">A</div>
+            <div class="step-content">
+                <div class="title">Bring your laptop and join the meeting</div>
+                <div class="detail">Open the meeting in Teams on your laptop and click <strong>"Join"</strong>.</div>
+            </div>
+        </div>
+
+        <div class="warn-box">
+            <div class="title">&#9888;&#65039;&nbsp; Mute your laptop audio before joining</div>
+            <div class="detail">Choose <strong>"Don't use audio"</strong> when Teams asks about audio settings - otherwise you will get echo. The room handles all sound.</div>
+        </div>
+
+        <div class="step">
+            <div class="step-num letter">B</div>
+            <div class="step-content">
+                <div class="title">Share your screen from Teams</div>
+                <div class="detail">Click the <strong>Share</strong> icon in Teams on your laptop and choose what to present.</div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <div class="footer-left">
+            <div class="rooms-label">This guide applies to</div>
+            <div class="room-names">
+                Chip Lunch (5.08)<br>
+                Oster Alle (6.15)<br>
+                Jens' Office (drop-in)
+            </div>
+            <div class="contact">
+                Questions? chipit.rigshospitalet@regionh.dk
+            </div>
+        </div>
+        <div class="footer-right">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://chipitteam.github.io/shared_documentation/teams_guide.html" alt="QR code to full guide">
+            <div class="qr-label">Scan for full guide</div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
