@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHIP Teams Guide</title>
+    <style>
+        :root {
+            --brand: #4B53BC;
+            --brand-light: #eef2ff;
+            --brand-dark: #363c8e;
+            --success: #16a34a;
+            --warning: #d97706;
+            --text: #1a1a2e;
+            --muted: #6b7280;
+            --border: #e5e7eb;
+            --bg: #f3f4f8;
+            --card: #ffffff;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 24px 16px 60px;
+        }
+
+        .container { max-width: 700px; margin: 0 auto; }
+
+        /* --- Header --- */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 28px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .header-title { display: flex; align-items: center; gap: 12px; }
+        .header-title .logo { font-size: 32px; }
+        .header-title h1 {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--brand);
+        }
+        .header-title p { font-size: 13px; color: var(--muted); }
+
+        /* --- Lang toggle --- */
+        .lang-toggle {
+            display: flex;
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .lang-toggle button {
+            padding: 7px 18px;
+            border: none;
+            background: transparent;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            color: var(--muted);
+            transition: all 0.2s;
+        }
+
+        .lang-toggle button.active {
+            background: var(--brand);
+            color: white;
+        }
+
+        /* --- Section nav pills --- */
+        .nav {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+
+        .nav a {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            background: white;
+            border: 1.5px solid var(--border);
+            border-radius: 20px;
+            font-size: 13px;
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .nav a:hover { border-color: var(--brand); color: var(--brand); }
+
+        /* --- Cards --- */
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1.5px solid var(--border);
+        }
+
+        .card-icon {
+            font-size: 28px;
+            width: 52px;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--brand-light);
+            border-radius: 12px;
+            flex-shrink: 0;
+        }
+
+        .card-header h2 { font-size: 18px; font-weight: 700; color: var(--brand); }
+        .card-header p { font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+        /* --- Steps --- */
+        .steps { display: flex; flex-direction: column; gap: 14px; }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+
+        .step-number {
+            background: var(--brand);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .step-body strong { display: block; margin-bottom: 3px; font-size: 15px; }
+        .step-body p { font-size: 14px; color: #444; }
+        .step-body .sub { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+        /* --- Callout boxes --- */
+        .callout {
+            border-radius: 10px;
+            padding: 14px 16px;
+            margin-top: 18px;
+            font-size: 14px;
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        .callout-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+        .callout.tip { background: var(--brand-light); border-left: 4px solid var(--brand); }
+        .callout.warning { background: #fffbeb; border-left: 4px solid var(--warning); }
+        .callout.success { background: #f0fdf4; border-left: 4px solid var(--success); }
+
+        /* --- Lobby diagram --- */
+        .lobby-diagram {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            margin: 18px 0;
+            flex-wrap: wrap;
+        }
+
+        .lobby-box {
+            background: var(--brand-light);
+            border: 2px solid var(--brand);
+            border-radius: 10px;
+            padding: 10px 16px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .lobby-arrow {
+            font-size: 22px;
+            color: var(--brand);
+            padding: 0 8px;
+        }
+
+        /* --- External card highlight --- */
+        .card.external {
+            border-color: #a5b4fc;
+            background: linear-gradient(135deg, #ffffff 0%, #f5f3ff 100%);
+        }
+
+        .card.external .card-header { border-color: #c7d2fe; }
+
+        /* --- Badge --- */
+        .badge {
+            display: inline-block;
+            background: var(--brand-light);
+            color: var(--brand);
+            border-radius: 20px;
+            padding: 2px 10px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+
+        .badge.green { background: #dcfce7; color: var(--success); }
+
+        /* --- Footer --- */
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 32px;
+        }
+
+        .footer a { color: var(--brand); text-decoration: none; }
+
+        /* --- Room selector --- */
+        .room-selector { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 24px; }
+        .room-tile {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 14px 12px;
+            text-align: center;
+            font-size: 13px;
+        }
+        .room-tile .room-icon { font-size: 24px; margin-bottom: 6px; }
+        .room-tile .room-name { font-weight: 700; font-size: 13px; margin-bottom: 4px; }
+        .room-tile .room-desc { font-size: 12px; color: var(--muted); line-height: 1.4; }
+        .room-tile .room-badge {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        .room-tile.active { border-color: var(--brand); background: var(--brand-light); }
+        .room-tile.active .room-badge { background: var(--brand); color: white; }
+        .room-tile.dropin { border-color: #f59e0b; background: #fffbeb; }
+        .room-tile.dropin .room-badge { background: #f59e0b; color: white; }
+        .room-tile.old { border-color: var(--border); background: #f9fafb; }
+        .room-tile.old .room-badge { background: #e5e7eb; color: #6b7280; }
+        @media (max-width: 480px) { .room-selector { grid-template-columns: 1fr; } }
+
+        /* --- Lightbox --- */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.85);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            cursor: zoom-out;
+        }
+        .lightbox-overlay.open { display: flex; }
+        .lightbox-overlay img {
+            max-width: 95vw;
+            max-height: 90vh;
+            border-radius: 10px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            color: white;
+            font-size: 32px;
+            line-height: 1;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        /* --- Language switching handled by JS --- */
+        [data-lang="da"] { display: none; }
+
+        @media (max-width: 480px) {
+            .card { padding: 20px 16px; }
+            .header-title h1 { font-size: 18px; }
+            .lobby-diagram { flex-direction: column; }
+            .lobby-arrow { transform: rotate(90deg); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Header -->
+    <div class="header">
+        <div class="header-title">
+            <div class="logo">&#128249;</div>
+            <div>
+                <h1>CHIP Teams Guide</h1>
+                <p>
+                    <span data-lang="en">Video meetings in our meeting rooms</span>
+                    <span data-lang="da">Videomoder i vores mødelokaler</span>
+                </p>
+            </div>
+        </div>
+        <div class="lang-toggle">
+            <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+            <button id="btn-da" onclick="setLang('da')">DA</button>
+        </div>
+    </div>
+
+    <!-- Room selector -->
+    <div class="room-selector">
+        <div class="room-tile active">
+            <div class="room-icon">&#127869;</div>
+            <div class="room-name">Chip Lunch</div>
+            <div class="room-desc">RH-lokale-CHIP Lunch 5.08</div>
+            <div class="room-badge">
+                <span data-lang="en">This guide</span>
+                <span data-lang="da">Denne guide</span>
+            </div>
+        </div>
+        <div class="room-tile active">
+            <div class="room-icon">&#127968;</div>
+            <div class="room-name">Øster Alle</div>
+            <div class="room-desc">RH-lokale-CHIP Øster Alle 6.15</div>
+            <div class="room-badge">
+                <span data-lang="en">This guide</span>
+                <span data-lang="da">Denne guide</span>
+            </div>
+        </div>
+        <div class="room-tile dropin">
+            <div class="room-icon">&#128682;</div>
+            <div class="room-name">Jens' Office</div>
+            <div class="room-desc">
+                <span data-lang="en">Same system - not bookable. Use "Meet now" to start.</span>
+                <span data-lang="da">Samme system - kan ikke bookes. Brug "Meet now" for at starte.</span>
+            </div>
+            <div class="room-badge">
+                <span data-lang="en">This guide</span>
+                <span data-lang="da">Denne guide</span>
+            </div>
+        </div>
+        <div class="room-tile old">
+            <div class="room-icon">&#128101;</div>
+            <div class="room-name">VIP</div>
+            <div class="room-desc">
+                <span data-lang="en">RH-lokale-CHIP Parken VIP 6.10 - uses HDMI or Clickshare.</span>
+                <span data-lang="da">RH-lokale-CHIP Parken VIP 6.10 - bruger HDMI eller Clickshare.</span>
+            </div>
+            <div class="room-badge">
+                <span data-lang="en">Not covered here</span>
+                <span data-lang="da">Ikke daekket her</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Nav pills -->
+    <div class="nav">
+        <a href="#book">&#128197; <span data-lang="en">Book room</span><span data-lang="da">Book lokale</span></a>
+        <a href="#join">&#9654;&#65039; <span data-lang="en">Join meeting</span><span data-lang="da">Deltag i mode</span></a>
+        <a href="#share">&#128250; <span data-lang="en">Share screen</span><span data-lang="da">Del skaerm</span></a>
+        <a href="#externals">&#127760; <span data-lang="en">Invite externals</span><span data-lang="da">Inviter externe</span></a>
+        <a href="#guest">&#128100; <span data-lang="en">Join as guest</span><span data-lang="da">Deltag som gaest</span></a>
+    </div>
+
+
+    <!-- 1. Book the room -->
+    <div class="card" id="book">
+        <div class="card-header">
+            <div class="card-icon">&#128197;</div>
+            <div>
+                <h2 data-lang="en">1. Book the Room</h2>
+                <h2 data-lang="da">1. Book lokalet</h2>
+                <p data-lang="en">Do this in Teams or Outlook before the meeting</p>
+                <p data-lang="da">Gor dette i Teams eller Outlook for modet</p>
+            </div>
+        </div>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-body">
+                    <strong data-lang="en">Create a new meeting in Teams or Outlook</strong>
+                    <strong data-lang="da">Opret et nyt mode i Teams eller Outlook</strong>
+                    <p data-lang="en">Use the calendar and click <em>New meeting</em>.</p>
+                    <p data-lang="da">Brug kalenderen og klik pa <em>Nyt mode</em>.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-body">
+                    <strong data-lang="en">Add the room as a Required Attendee</strong>
+                    <strong data-lang="da">Tilfoj lokalet som paakraevet deltager</strong>
+                    <p data-lang="en">Search for the room name (e.g. <em>Lunchroom 5.08</em>) in the attendee field - just like inviting a colleague.</p>
+                    <p data-lang="da">Sog efter lokalets navn (f.eks. <em>Frokostrum 5.08</em>) i deltagerfeltet - ligesom du inviterer en kollega.</p>
+                    <p class="sub" data-lang="en">The room accepts automatically if it is free.</p>
+                    <p class="sub" data-lang="da">Lokalet accepterer automatisk, hvis det er ledigt.</p>
+                    <p class="sub" data-lang="en">&#128161; Shortcut: clicking the <em>Location</em> field shows a list of all available CHIP rooms to pick from.</p>
+                    <p class="sub" data-lang="da">&#128161; Genvej: klik pa <em>Location</em>-feltet for at se en liste over alle ledige CHIP-lokaler at vaelge imellem.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-body">
+                    <strong data-lang="en">Send the invite</strong>
+                    <strong data-lang="da">Send invitationen</strong>
+                    <p data-lang="en">Your meeting is now linked to the room screen - it will appear on the touch panel when you arrive.</p>
+                    <p data-lang="da">Dit mode er nu knyttet til lokalets skaerm - det vises pa betjeningspanelet, nar du ankommer.</p>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 20px;">
+            <p data-lang="en" style="font-size: 13px; color: #6b7280; margin-bottom: 8px;">&#127910; See it in action:</p>
+            <p data-lang="da" style="font-size: 13px; color: #6b7280; margin-bottom: 8px;">&#127910; Se det i praksis:</p>
+            <img src="img/meeting_create.gif" alt="How to create a Teams meeting and book a room" class="zoomable" style="width: 100%; border-radius: 10px; border: 1px solid #e5e7eb; cursor: zoom-in;">
+        </div>
+        <div class="callout tip">
+            <div class="callout-icon">&#128161;</div>
+            <div data-lang="en">You can also check room availability directly in the Outlook <strong>Room Finder</strong> panel on the right side when creating an event.</div>
+            <div data-lang="da">Du kan ogsa tjekke lokalets ledighed direkte i Outlook <strong>Lokalesogning</strong>-panelet til hojre, nar du opretter en begivenhed.</div>
+        </div>
+    </div>
+
+
+    <!-- 2. Join the meeting -->
+    <div class="card" id="join">
+        <div class="card-header">
+            <div class="card-icon">&#9654;&#65039;</div>
+            <div>
+                <h2 data-lang="en">2. Join the Meeting</h2>
+                <h2 data-lang="da">2. Deltag i modet</h2>
+                <p data-lang="en">Walk in - the room is ready for you</p>
+                <p data-lang="da">Ga ind - lokalet er klar til dig</p>
+            </div>
+        </div>
+        <div style="margin-bottom: 20px;">
+            <img src="img/mainscreen.jpg" alt="Teams room main display showing upcoming meetings" class="zoomable" style="width: 100%; border-radius: 10px; border: 1px solid #e5e7eb; cursor: zoom-in;">
+        </div>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-body">
+                    <strong data-lang="en">Find your meeting on the touch screen</strong>
+                    <strong data-lang="da">Find dit mode pa beroeringsskaermen</strong>
+                    <p data-lang="en">The table's touch panel shows all upcoming meetings for this room.</p>
+                    <p data-lang="da">Bordets betjeningspanel viser alle kommende moder for dette lokale.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-body">
+                    <strong data-lang="en">Tap "Join"</strong>
+                    <strong data-lang="da">Tryk pa "Join"</strong>
+                    <p data-lang="en">One tap and the camera, microphone and screen are all active. No setup needed.</p>
+                    <p data-lang="da">Et tryk og kameraet, mikrofonen og skaermen er alle aktive. Ingen opsaetning krevet.</p>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 20px;">
+            <p data-lang="en" style="font-size: 13px; color: #6b7280; margin-bottom: 8px;">&#128247; Touch panel - tap "Join" next to your meeting:</p>
+            <p data-lang="da" style="font-size: 13px; color: #6b7280; margin-bottom: 8px;">&#128247; Betjeningspanel - tryk "Join" ved siden af dit mode:</p>
+            <img src="img/touch_join.jpg" alt="Touch panel showing the Join button" class="zoomable" style="width: 100%; border-radius: 10px; border: 1px solid #e5e7eb; cursor: zoom-in;">
+        </div>
+        <div class="callout tip">
+            <div class="callout-icon">&#128161;</div>
+            <div data-lang="en"><strong>The room is the host.</strong> You do not need to connect your laptop to camera, speakers, or microphone. Just bring yourself.</div>
+            <div data-lang="da"><strong>Lokalet er vaerten.</strong> Du behover ikke tilslutte din laptop til kamera, hojttalere eller mikrofon. Tag bare dig selv med.</div>
+        </div>
+        <div class="callout warning">
+            <div class="callout-icon">&#9888;&#65039;</div>
+            <div data-lang="en"><strong>Using Jens' Office?</strong> That room cannot be booked - just walk in and tap <em>Meet now</em> on the touch panel to start an instant meeting.</div>
+            <div data-lang="da"><strong>Bruger du Jens' kontor?</strong> Det lokale kan ikke bookes - ga bare ind og tryk pa <em>Meet now</em> pa betjeningspanelet for at starte et ojeblikkeligt mode.</div>
+        </div>
+    </div>
+
+
+    <!-- 3. Share content -->
+    <div class="card" id="share">
+        <div class="card-header">
+            <div class="card-icon">&#128250;</div>
+            <div>
+                <h2 data-lang="en">3. Share Your Screen</h2>
+                <h2 data-lang="da">3. Del din skaerm</h2>
+                <p data-lang="en">Wireless via the Teams desktop app</p>
+                <p data-lang="da">Tradlost via Teams-skrivebordsappen</p>
+            </div>
+        </div>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-body">
+                    <strong data-lang="en">Click the Share icon in Teams</strong>
+                    <strong data-lang="da">Klik pa Share-ikonet i Teams</strong>
+                    <p data-lang="en">In the Teams desktop app, click the <em>Share</em> icon and choose <em>Cast to a room</em>.</p>
+                    <p data-lang="da">I Teams-skrivebordsappen skal du klikke pa <em>Share</em>-ikonet og vaelge <em>Cast to a room</em>.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-body">
+                    <strong data-lang="en">Select the room</strong>
+                    <strong data-lang="da">Vaelg lokalet</strong>
+                    <p data-lang="en">Pick your room from the list. Your screen will appear on the room display within seconds.</p>
+                    <p data-lang="da">Vaelg dit lokale fra listen. Din skaerm vises pa lokalets skaerm inden for sekunder.</p>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 20px;">
+            <p data-lang="en" style="font-size: 13px; color: #6b7280; margin-bottom: 8px;">&#128247; The touch panel while in a call - Share button in the toolbar:</p>
+            <p data-lang="da" style="font-size: 13px; color: #6b7280; margin-bottom: 8px;">&#128247; Betjeningspanelet under et opkald - Share-knappen i vaerktoejslinjen:</p>
+            <img src="img/touch_incall.jpg" alt="Touch panel during a call showing the Share button" class="zoomable" style="width: 100%; border-radius: 10px; border: 1px solid #e5e7eb; cursor: zoom-in;">
+        </div>
+        <div class="callout tip">
+            <div class="callout-icon">&#128161;</div>
+            <div data-lang="en">Remote participants see whatever you share on the room display.</div>
+            <div data-lang="da">Fjerndeltagere ser det, du deler pa lokalets skaerm.</div>
+        </div>
+    </div>
+
+
+    <!-- 4. Invite externals -->
+    <div class="card external" id="externals">
+        <div class="card-header">
+            <div class="card-icon">&#127760;</div>
+            <div>
+                <h2 data-lang="en">4. Inviting External Participants</h2>
+                <h2 data-lang="da">4. Inviter eksterne deltagere</h2>
+                <p data-lang="en">The invite must be sent from the organiser's laptop</p>
+                <p data-lang="da">Invitationen skal sendes fra arrangørens laptop</p>
+            </div>
+        </div>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-body">
+                    <strong data-lang="en">Add their email address to the invite (on your laptop)</strong>
+                    <strong data-lang="da">Tilfoj deres emailadresse til invitationen (pa din laptop)</strong>
+                    <p data-lang="en">In Teams or Outlook on your laptop, add the external email (e.g. <em>name@gmail.com</em>) as an attendee before the meeting. Teams will label them as <em>External</em>.</p>
+                    <p data-lang="da">I Teams eller Outlook pa din laptop skal du tilføje den eksterne email (f.eks. <em>name@gmail.com</em>) som deltager inden mødet. Teams markerer dem som <em>Ekstern</em>.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-body">
+                    <strong data-lang="en">They receive a join link by email</strong>
+                    <strong data-lang="da">De modtager et link via email</strong>
+                    <p data-lang="en">The invite email contains a <em>Join Microsoft Teams Meeting</em> link. They click it - no Teams account or app required.</p>
+                    <p data-lang="da">Invitations-emailen indeholder et <em>Deltag i Microsoft Teams-mode</em>-link. De klikker pa det - ingen Teams-konto eller app krevet.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-body">
+                    <strong data-lang="en">They wait in the lobby</strong>
+                    <strong data-lang="da">De venter i lobbyen</strong>
+                    <p data-lang="en">External guests land in a virtual waiting room. You will see a notification to admit them.</p>
+                    <p data-lang="da">Eksterne gaester havner i et virtuelt ventelokale. Du vil modtage en besked om at lukke dem ind.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-body">
+                    <strong data-lang="en">Admit them from the lobby</strong>
+                    <strong data-lang="da">Indslaep dem fra lobbyen</strong>
+                    <p data-lang="en">When you see their name, tap <em>Admit</em> on the touch panel or click it in Teams on your laptop. They join the call immediately.</p>
+                    <p data-lang="da">Nar du ser deres navn, tryk pa <em>Admit</em> pa betjeningspanelet eller klik pa det i Teams pa din laptop. De deltager i opkaldet med det samme.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lobby flow diagram -->
+        <div class="lobby-diagram">
+            <div class="lobby-box">
+                <span data-lang="en">External clicks link</span>
+                <span data-lang="da">Ekstern klikker pa link</span>
+            </div>
+            <div class="lobby-arrow">&#8594;</div>
+            <div class="lobby-box">
+                <span data-lang="en">Waits in lobby</span>
+                <span data-lang="da">Venter i lobbyen</span>
+            </div>
+            <div class="lobby-arrow">&#8594;</div>
+            <div class="lobby-box">
+                <span data-lang="en">You admit them</span>
+                <span data-lang="da">Du indslaeper dem</span>
+            </div>
+            <div class="lobby-arrow">&#8594;</div>
+            <div class="lobby-box" style="border-color: var(--success); background: #f0fdf4;">
+                <span data-lang="en">In the meeting</span>
+                <span data-lang="da">I modet</span>
+            </div>
+        </div>
+
+        <div class="callout warning">
+            <div class="callout-icon">&#9888;&#65039;</div>
+            <div data-lang="en"><strong>Nobody admitted them?</strong> If the organizer does not admit the guest within a few minutes, Teams will send a reminder notification. Check your Teams notifications if you do not see the lobby popup.</div>
+            <div data-lang="da"><strong>Ingen har indslaept dem?</strong> Hvis arrangoren ikke indslaeper gaesten inden for et par minutter, sender Teams en pamindelsesbesked. Tjek dine Teams-notifikationer, hvis du ikke ser lobby-popupen.</div>
+        </div>
+    </div>
+
+
+    <!-- 5. Join as external (guest section) -->
+    <div class="card" id="guest" style="border-top: 4px solid var(--brand);">
+        <div class="card-header">
+            <div class="card-icon">&#128100;</div>
+            <div>
+                <h2 data-lang="en">Joining as an External Guest</h2>
+                <h2 data-lang="da">Deltag som ekstern gaest</h2>
+                <p data-lang="en">Share this section with people outside the organisation</p>
+                <p data-lang="da">Del dette afsnit med personer uden for organisationen</p>
+            </div>
+        </div>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-body">
+                    <strong data-lang="en">Open the invitation email</strong>
+                    <strong data-lang="da">Aben invitations-emailen</strong>
+                    <p data-lang="en">Find the email from the meeting organiser and click <em>Join Microsoft Teams Meeting</em>.</p>
+                    <p data-lang="da">Find emailen fra modearrangoren og klik pa <em>Deltag i Microsoft Teams-mode</em>.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-body">
+                    <strong data-lang="en">Choose how to join</strong>
+                    <strong data-lang="da">Vaelg, hvordan du vil deltage</strong>
+                    <p data-lang="en">Your browser opens a page with two options:</p>
+                    <p data-lang="da">Din browser abner en side med to muligheder:</p>
+                    <p class="sub" data-lang="en"><strong>Open in Teams app</strong> - if you have Teams installed (recommended for best quality)<br><strong>Continue in browser</strong> - no install needed, works in Chrome or Edge</p>
+                    <p class="sub" data-lang="da"><strong>Abn i Teams-appen</strong> - hvis du har Teams installeret (anbefalet for bedste kvalitet)<br><strong>Fortsaet i browser</strong> - ingen installation krevet, virker i Chrome eller Edge</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-body">
+                    <strong data-lang="en">Enter your name and join</strong>
+                    <strong data-lang="da">Indtast dit navn og deltag</strong>
+                    <p data-lang="en">Type your name so participants can identify you, then click <em>Join now</em>.</p>
+                    <p data-lang="da">Skriv dit navn, sa deltagerne kan genkende dig, og klik pa <em>Deltag nu</em>.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-body">
+                    <strong data-lang="en">Wait to be admitted</strong>
+                    <strong data-lang="da">Vent pa at blive indslaept</strong>
+                    <p data-lang="en">You will see a "Waiting to be admitted" screen. The host will let you in shortly.</p>
+                    <p data-lang="da">Du vil se en "Venter pa at blive indslaept"-skaerm. Vaerten slipper dig ind om lidt.</p>
+                </div>
+            </div>
+        </div>
+        <div class="callout success">
+            <div class="callout-icon">&#10003;</div>
+            <div data-lang="en">You do <strong>not</strong> need a Microsoft account or a Teams subscription. The browser version is free and requires no installation.</div>
+            <div data-lang="da">Du behover <strong>ikke</strong> en Microsoft-konto eller et Teams-abonnement. Browserversionen er gratis og kraever ingen installation.</div>
+        </div>
+        <div class="callout warning">
+            <div class="callout-icon">&#9888;&#65039;</div>
+            <div data-lang="en"><strong>Camera or microphone not working?</strong> When the browser asks for permission to use your camera and microphone, click <em>Allow</em>. If you missed it, click the padlock icon in the browser address bar to reset permissions.</div>
+            <div data-lang="da"><strong>Kamera eller mikrofon virker ikke?</strong> Nar browseren beder om tilladelse til at bruge kamera og mikrofon, skal du klikke pa <em>Tillad</em>. Hvis du forpassede det, skal du klikke pa hanelasikonet i browserens adresselinje for at nulstille tilladelserne.</div>
+        </div>
+    </div>
+
+
+    <!-- Footer -->
+    <div class="footer">
+        <p data-lang="en">Questions? Contact <strong><a href="mailto: chipit.rigshospitalet@regionh.dk">chipit.rigshospitalet@regionh.dk</a></strong></p>
+        <p data-lang="da">Sporgsmal? Kontakt <strong><a href="mailto: chipit.rigshospitalet@regionh.dk">chipit.rigshospitalet@regionh.dk</a></strong></p>
+        <p style="margin-top: 6px;">CHIP &bull; Rigshospitalet</p>
+    </div>
+
+</div>
+
+<!-- Lightbox overlay -->
+<div class="lightbox-overlay" id="lightbox">
+    <span class="lightbox-close" id="lightbox-close">&times;</span>
+    <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+    const INLINE_TAGS = new Set(['SPAN', 'STRONG', 'EM', 'A', 'B', 'I', 'SMALL', 'CODE']);
+
+    function setLang(lang) {
+        document.querySelectorAll('[data-lang]').forEach(el => {
+            if (el.dataset.lang === lang) {
+                el.style.display = INLINE_TAGS.has(el.tagName) ? 'inline' : 'block';
+            } else {
+                el.style.display = 'none';
+            }
+        });
+        document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+        document.getElementById('btn-da').classList.toggle('active', lang === 'da');
+        document.documentElement.lang = lang;
+        localStorage.setItem('chip-teams-lang', lang);
+    }
+
+    setLang(localStorage.getItem('chip-teams-lang') || 'en');
+
+    // Lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+
+    function openLightbox(src, alt) {
+        lightboxImg.src = src;
+        lightboxImg.alt = alt;
+        lightbox.classList.add('open');
+    }
+
+    lightbox.addEventListener('click', () => lightbox.classList.remove('open'));
+    document.getElementById('lightbox-close').addEventListener('click', () => lightbox.classList.remove('open'));
+
+    // Wire lightbox to non-GIF zoomable images
+    document.querySelectorAll('img.zoomable:not([src$=".gif"])').forEach(img => {
+        img.addEventListener('click', () => openLightbox(img.src, img.alt));
+    });
+
+    // Play each zoomable GIF once, then freeze on last frame
+    async function parseGifDuration(src) {
+        try {
+            const buf = new Uint8Array(await (await fetch(src)).arrayBuffer());
+            let i = 13 + ((buf[10] >> 7) ? 3 * (2 ** ((buf[10] & 7) + 1)) : 0);
+            let ms = 0;
+            while (i < buf.length) {
+                const b = buf[i];
+                if (b === 0x3B) break;
+                if (b === 0x21) {
+                    if (buf[i + 1] === 0xF9) ms += (buf[i + 4] | (buf[i + 5] << 8)) * 10;
+                    i += 2;
+                    while (buf[i]) i += buf[i] + 1;
+                    i++;
+                } else if (b === 0x2C) {
+                    const p = buf[i + 9];
+                    i += 10 + ((p >> 7) ? 3 * (2 ** ((p & 7) + 1)) : 0) + 1;
+                    while (buf[i]) i += buf[i] + 1;
+                    i++;
+                } else { i++; }
+            }
+            return ms > 0 ? ms : 3000;
+        } catch { return 3000; }
+    }
+
+    async function freezeGifAfterOneLoop(img) {
+        if (!img.complete) await new Promise(r => img.addEventListener('load', r, { once: true }));
+        const totalMs = await parseGifDuration(img.src);
+
+        const canvas = document.createElement('canvas');
+        canvas.width = img.naturalWidth;
+        canvas.height = img.naturalHeight;
+        canvas.style.cssText = img.style.cssText;
+        canvas.style.cursor = 'zoom-in';
+        img.insertAdjacentElement('afterend', canvas);
+        img.style.display = 'none';
+
+        const ctx = canvas.getContext('2d');
+        const deadline = performance.now() + totalMs;
+
+        (function draw(now) {
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            if (now < deadline) requestAnimationFrame(draw);
+        })(performance.now());
+
+        canvas.addEventListener('click', () => openLightbox(img.src, img.alt));
+    }
+
+    document.querySelectorAll('img.zoomable[src$=".gif"]').forEach(freezeGifAfterOneLoop);
+</script>
+
+</body>
+</html>
